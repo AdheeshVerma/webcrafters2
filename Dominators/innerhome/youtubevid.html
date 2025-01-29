@@ -4,71 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Video</title>
-    <style>
-        body {
-            display: flex;
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            background: rgb(55,65,81);
-
-        }
-        .sidebar {
-            width: 300px;
-            background: rgb(31, 41, 55);
-            color: #fff;
-            padding: 20px;
-            height: 100vh;
-            overflow-y: auto;
-            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .sidebar h3 {
-            margin-top: 0;
-            text-align: center;
-            font-size: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #495057;
-        }
-        .video-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        iframe {
-            width: 80%;
-            height: 500px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .video-item {
-            display: flex;
-            align-items: center;
-            margin: 15px 0;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .video-item:hover {
-            background: #495057;
-        }
-        .video-item input {
-            margin-right: 10px;
-        }
-        .video-item span {
-            flex: 1;
-            font-size: 16px;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="sidebar">
-        <h3>Course Progress</h3>
-        <div id="videoList"></div>
+<body class="flex bg-gray-800 text-white">
+    <div class="w-72 bg-gray-900 p-5 h-screen overflow-y-auto shadow-lg">
+        <h3 class="text-lg font-semibold text-center border-b pb-3 border-gray-700">Course Progress</h3>
+        <div id="videoList" class="mt-4"></div>
     </div>
-    <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/tVzUXW6siu0?si=B2ayebSvhR2r9xB-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div class="flex-1 flex justify-center items-center p-5">
+        <iframe width="960" height="615" src="https://www.youtube.com/embed/tVzUXW6siu0?si=B2ayebSvhR2r9xB-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <script>
         const videos = [
@@ -105,10 +49,10 @@
             videoList.innerHTML = "";
             videos.forEach(video => {
                 const div = document.createElement("div");
-                div.className = "video-item";
+                div.className = "flex items-center p-3 rounded-lg cursor-pointer transition hover:bg-gray-700";
                 div.innerHTML = `
-                    <input type="checkbox" ${progress[video.id] ? "checked" : ""}>
-                    <span>${video.title}</span>
+                    <input type="checkbox" class="mr-3" ${progress[video.id] ? "checked" : ""}>
+                    <span class="flex-1">${video.title}</span>
                 `;
                 div.addEventListener("click", () => updateVideo(video.id));
                 div.querySelector("input").addEventListener("change", (e) => {
