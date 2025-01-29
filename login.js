@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Simple authentication logic
     if (email === "testmail@gmail.com" && password === "qwertyuiop") {
       alert('Login successful!');
-      window.location.href = 'learnapp/index.html';
+      window.location.href = 'learnapp/inhome.html';
 
     } else {
       alert('Incorrect email or password');
